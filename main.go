@@ -33,6 +33,10 @@ func main() {
 	}
 
 	// switch for cl args
+	err = cmdSwitcher(tl, os.Args)
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	// loop over todos
 	for _, t := range *tl {
