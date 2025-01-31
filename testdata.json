@@ -1,0 +1,14 @@
+[
+	{
+		"id": 1,
+		"title": "first todo",
+		"body": "this is my first todo",
+		"created_at": "2025-01-30T20:07:49.8346374-06:00"
+	},
+	{
+		"id": 2,
+		"title": "second todo",
+		"body": "this is my second todo",
+		"created_at": "2025-01-30T20:07:49.8346374-06:00"
+	}
+]
