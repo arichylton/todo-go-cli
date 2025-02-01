@@ -3,7 +3,6 @@ package main
 import "fmt"
 
 func cmdSwitcher(tl *TodosList, args []string) error {
-
 	args = args[1:]
 	action := ""
 	if len(args) > 0 {

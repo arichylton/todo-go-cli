@@ -19,6 +19,7 @@ type TodosList []todo
 
 func main() {
 	tl := &TodosList{}
+	fmt.Println("Hello world")
 
 	// Read json file into data
 	data, err := os.ReadFile("testdata.json")
