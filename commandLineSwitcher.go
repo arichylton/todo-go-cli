@@ -1,27 +1,25 @@
 package main
 
-import "fmt"
-
 func cmdSwitcher(tl *TodosList, args []string) error {
 	args = args[1:]
 	action := ""
 	if len(args) > 0 {
 		action = args[0]
 	}
-	actionSwitcher(action)
+	actionSwitcher(tl, action)
 
 	return nil
 }
 
-func actionSwitcher(action string) {
+func actionSwitcher(tl *TodosList, action string) {
 	switch action {
 	case "r":
-		fmt.Println("reading")
+		tl.Read()
 	case "w":
-		fmt.Println("writing")
+		tl.Write()
 	case "d":
-		fmt.Println("deleting")
+		tl.Delete()
 	default:
-		fmt.Println("reading default")
+		tl.Read()
 	}
 }

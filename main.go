@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"os"
 	"time"
@@ -19,7 +18,6 @@ type TodosList []todo
 
 func main() {
 	tl := &TodosList{}
-	fmt.Println("Hello world")
 
 	// Read json file into data
 	data, err := os.ReadFile("testdata.json")
@@ -37,10 +35,5 @@ func main() {
 	err = cmdSwitcher(tl, os.Args)
 	if err != nil {
 		log.Fatal(err)
-	}
-
-	// loop over todos
-	for _, t := range *tl {
-		fmt.Println(t)
 	}
 }
