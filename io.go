@@ -1,11 +1,37 @@
 package main
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
+	"os"
+	"time"
 )
 
-func (tl *TodosList) Write() error {
+// type todo struct {
+// 	Id        int       `json:"id"`
+// 	Title     string    `json:"title"`
+// 	Body      string    `json:"body"`
+// 	CreatedAt time.Time `json:"created_at"`
+// }
+
+func (tl TodosList) Write() error {
+	td := todo{
+		Id:        3,
+		Title:     "third todo",
+		Body:      "This is my third todo",
+		CreatedAt: time.Now(),
+	}
+	tl = append(tl, td)
+	bs, err := json.Marshal(&tl)
+	if err != nil {
+		return err
+	}
+	err = os.WriteFile("testdata.json", bs, 0666)
+	if err != nil {
+		return err
+	}
+	fmt.Println(tl)
 	// Add todo
 	return nil
 }
