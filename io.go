@@ -8,6 +8,15 @@ import (
 	"time"
 )
 
+// Custom type for formatting time
+type CustomTime time.Time
+
+// Implement the JSON Marshaler interface for CustomTime
+func (ct CustomTime) MarshalJSON() ([]byte, error) {
+	// Format your time as desired (example: "Jan 02, 2006 03:04 PM")
+	return []byte(`"` + time.Time(ct).Format("2006-01-02") + `"`), nil
+}
+
 // type todo struct {
 // 	Id        int       `json:"id"`
 // 	Title     string    `json:"title"`
@@ -15,11 +24,16 @@ import (
 // 	CreatedAt time.Time `json:"created_at"`
 // }
 
-func (tl TodosList) Write() error {
+func (tl TodosList) Write(title string, body string) error {
+	id := 0
+	if len(tl) > 0 {
+		id = tl[len(tl)-1].Id + 1
+	}
+
 	td := todo{
-		Id:        3,
-		Title:     "third todo",
-		Body:      "This is my third todo",
+		Id:        id,
+		Title:     title,
+		Body:      body,
 		CreatedAt: time.Now(),
 	}
 	tl = append(tl, td)
@@ -29,9 +43,10 @@ func (tl TodosList) Write() error {
 	}
 	err = os.WriteFile("testdata.json", bs, 0666)
 	if err != nil {
+		fmt.Println("something wrong")
 		return err
+
 	}
-	fmt.Println(tl)
 	// Add todo
 	return nil
 }
